@@ -5,8 +5,10 @@ using MichaelWolfGames;
 using MichaelWolfGames.MeterSystem;
 using System;
 
-public class PresentCollectionManager : Singleton<PresentCollectionManager>, IMeterable
+public class PresentCollectionManager : MonoBehaviour, IMeterable
 {
+    public static PresentCollectionManager Instance;
+
     public Canvas canvas;
     [SerializeField] private int currentCount;
     public int maxCount;
@@ -39,6 +41,7 @@ public class PresentCollectionManager : Singleton<PresentCollectionManager>, IMe
 
     // Use this for initialization
     void Start () {
+        Instance = this;
         OnUpdateValue(0);
         
 	}
