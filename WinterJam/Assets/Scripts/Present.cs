@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Present : MonoBehaviour {
 
+    private bool isCollected = false;
 	// Use this for initialization
 	void Start () {
 		
@@ -16,10 +17,12 @@ public class Present : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
+        if (isCollected) return;
         if(other.attachedRigidbody != null)
         {
             if(other.attachedRigidbody.tag == "Player")
             {
+                isCollected = true;
                 Destroy(this.gameObject);
                 PresentCollectionManager.Instance.AddPresent(1);
             }
