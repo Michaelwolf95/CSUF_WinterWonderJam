@@ -67,6 +67,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4680724240667222}
+  - component: {fileID: 114768187487768082}
   - component: {fileID: 195187944299988458}
   - component: {fileID: 54837162959138770}
   m_Layer: 0
@@ -188,6 +189,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 0}
+--- !u!114 &114768187487768082
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1782635778458664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4405c16d705f3a48b1e04dda48daacb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Faction: 2
+  maxHealth: 100
+  currentHealth: 100
+  _useInvulnerability: 1
+  _invulnTime: 0.25
+  _isInvulnerable: 0
 --- !u!136 &136398622693355250
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -270,7 +288,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: bc1a57a2092db4244982ea38ce7ec4fb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 94f07c9bc55ba3743a3696ac93143bc4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
