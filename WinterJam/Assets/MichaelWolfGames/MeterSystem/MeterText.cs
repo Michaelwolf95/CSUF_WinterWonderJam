@@ -25,8 +25,8 @@ namespace MichaelWolfGames.MeterSystem
                 }
                 else
                 {
-                    if(CastAsInteger)
-                        str = ((int)Meterable.CurrentValue) + "/" + ((int)Meterable.MaxValue);
+                    if (CastAsInteger)
+                        str = ((int)Meterable.CurrentValue).ToString();// + "/" + ((int)Meterable.MaxValue);
                     else
                         str = (Meterable.CurrentValue).ToString("0.##") + "/" + Meterable.MaxValue.ToString("0.##");
                 }

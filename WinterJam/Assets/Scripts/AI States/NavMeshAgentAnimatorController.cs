@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Present : MonoBehaviour {
+public class NavMeshAgentAnimatorController : MonoBehaviour
+{
 
 	// Use this for initialization
 	void Start () {

@@ -6,11 +6,12 @@ using TMPro;
 
 public class MessageDisplayer : MonoBehaviour
 {
-
+    public static MessageDisplayer instance;
     public TextMeshProUGUI textElement;
 
     private void Start()
     {
+        instance = this;
         textElement.enabled = false;
     }
 
