@@ -51,7 +51,7 @@ namespace MichaelWolfGames.DetectorSystem
                     }
                     else
                     {
-                        Debug.DrawLine(eyePos, targetTransform.position, Color.cyan);
+                        //Debug.DrawLine(eyePos, targetTransform.position, Color.cyan);
                     }
                 }
             }
@@ -61,11 +61,10 @@ namespace MichaelWolfGames.DetectorSystem
                 if (Physics.Raycast(eyePos, eye2Target.normalized, out hit, checkRange, layerMask, _triggerInteraction))
                 {
                     //debugString += "Raycast hit -> ";
-                    if (!_checkTag || (_checkTag && hit.collider.gameObject.CompareTag(_targetTag)))
+                    GameObject hitGo = (hit.collider.attachedRigidbody) ? hit.collider.attachedRigidbody.gameObject : hit.collider.gameObject;
+                    if (!_checkTag || (_checkTag && hitGo.CompareTag(_targetTag)))
                     {
-                        var hitTransform = (hit.collider.attachedRigidbody)
-                                                ? hit.collider.attachedRigidbody.transform
-                                                : hit.collider.transform;
+                        var hitTransform = hitGo.transform;
                         if (CheckIfTarget(hitTransform, targetTransform))
                         {
                             Debug.DrawLine(eyePos, hit.point, Color.green);
