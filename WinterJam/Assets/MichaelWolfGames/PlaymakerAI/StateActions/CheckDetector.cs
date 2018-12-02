@@ -7,13 +7,15 @@ using MichaelWolfGames.Utility;
 
 namespace MichaelWolfGames.AI.Playmaker
 {
-	public class CheckDetector : StateActionBehaviour
+	public class CheckDetector : FsmStateAction
 	{
         public DetectorBase detector;
+        public FsmGameObject target;
         [ActionSection("Detect Event")]
         public FsmEvent DetectEvent;
-        public float DetectorRange = 20f;
 	    public bool CheckEveryFrame = true;
+        public bool OverrideRange = false;
+        public float DetectorRange = 20f;
 
 	    public bool UseRealizeTimer = false;
 	    public FsmFloat RealizeTime = 0.5f;
@@ -95,12 +97,19 @@ namespace MichaelWolfGames.AI.Playmaker
 
 	    public bool DoCheckDetector()
 	    {
-	        if (this.BehaviourController.LookTargetTransform == null)
-	        {
-                //Debug.LogWarning("[CheckDetector] Detector does not have a target!");
-                return false;
-	        }
-            return detector.CheckForTarget(this.BehaviourController.LookTargetTransform, DetectorRange);
+	        //if (this.BehaviourController.LookTargetTransform == null)
+	        //{
+         //       //Debug.LogWarning("[CheckDetector] Detector does not have a target!");
+         //       return false;
+	        //}
+            if(OverrideRange)
+            {
+                return detector.CheckForTarget(target.Value.transform, DetectorRange);
+            }
+            else
+            {
+                return detector.CheckForTarget(target.Value.transform);
+            }
         }
     }
 }

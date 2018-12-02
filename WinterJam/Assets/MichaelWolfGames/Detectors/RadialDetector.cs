@@ -7,6 +7,7 @@ namespace MichaelWolfGames.DetectorSystem
 	public class RadialDetector : DetectorBase
 	{
 	    [SerializeField] private float _defaultRange = 5f;
+        public bool seeThroughColliders = false;
 
 	    public override bool CheckForTarget(Transform targetTransform)
         {
@@ -25,35 +26,66 @@ namespace MichaelWolfGames.DetectorSystem
         {
             var eyePos = this.transform.position;
             var eye2Target = targetTransform.position - eyePos;
-            RaycastHit hit;
-            if (Physics.Raycast(eyePos, eye2Target.normalized, out hit, checkRange, layerMask, _triggerInteraction))
+
+            if(seeThroughColliders == true)
             {
-                //debugString += "Raycast hit -> ";
-                if (!_checkTag || (_checkTag && hit.collider.gameObject.CompareTag(_targetTag)))
+                RaycastHit[] hits = Physics.RaycastAll(eyePos, eye2Target.normalized, checkRange, layerMask, _triggerInteraction);
+                foreach (RaycastHit h in hits)
                 {
-                    var hitTransform = (hit.collider.attachedRigidbody)
-                                            ? hit.collider.attachedRigidbody.transform
-                                            : hit.collider.transform;
-                    if (CheckIfTarget(hitTransform, targetTransform))
+                    //debugString += "Raycast hit -> ";
+                    if (!_checkTag || (_checkTag && h.collider.gameObject.CompareTag(_targetTag)))
                     {
-                        Debug.DrawLine(eyePos, hit.point, Color.green);
-                        
-                        return true;
+                        var hitTransform = (h.collider.attachedRigidbody)
+                                                ? h.collider.attachedRigidbody.transform
+                                                : h.collider.transform;
+                        if (CheckIfTarget(hitTransform, targetTransform))
+                        {
+                            Debug.DrawLine(eyePos, h.point, Color.green);
+
+                            return true;
+                        }
+                        else
+                        {
+                            Debug.DrawLine(eyePos, h.point, Color.red);
+                        }
                     }
                     else
                     {
-                        Debug.DrawLine(eyePos, hit.point, Color.red);
+                        Debug.DrawLine(eyePos, targetTransform.position, Color.cyan);
                     }
-                }
-                else
-                {
-                    Debug.DrawLine(eyePos, targetTransform.position, Color.cyan);
                 }
             }
             else
             {
-                Debug.DrawLine(eyePos, targetTransform.position, Color.magenta);
-
+                RaycastHit hit;
+                if (Physics.Raycast(eyePos, eye2Target.normalized, out hit, checkRange, layerMask, _triggerInteraction))
+                {
+                    //debugString += "Raycast hit -> ";
+                    if (!_checkTag || (_checkTag && hit.collider.gameObject.CompareTag(_targetTag)))
+                    {
+                        var hitTransform = (hit.collider.attachedRigidbody)
+                                                ? hit.collider.attachedRigidbody.transform
+                                                : hit.collider.transform;
+                        if (CheckIfTarget(hitTransform, targetTransform))
+                        {
+                            Debug.DrawLine(eyePos, hit.point, Color.green);
+                        
+                            return true;
+                        }
+                        else
+                        {
+                            Debug.DrawLine(eyePos, hit.point, Color.red);
+                        }
+                    }
+                    else
+                    {
+                        Debug.DrawLine(eyePos, targetTransform.position, Color.cyan);
+                    }
+                }
+                else
+                {
+                    Debug.DrawLine(eyePos, targetTransform.position, Color.magenta);
+                }
             }
             return false;
         }

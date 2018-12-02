@@ -1,16 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using HutongGames.PlayMaker;
+using UnityEngine.AI;
 
-public class ChaseState : MonoBehaviour {
+public class ChaseState : FsmStateAction
+{
+    public FsmOwnerDefault gameObject;
+    public FsmGameObject target;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    private NavMeshAgent agent;
+
+    public override void OnEnter()
+    {
+        var go = Fsm.GetOwnerDefaultTarget(gameObject);
+        if (go == null)
+        {
+            return;
+        }
+        agent = go.GetComponent<NavMeshAgent>();
+    }
+    public override void OnUpdate()
+    {
+        agent.SetDestination(target.Value.transform.position);
+    }
 }
