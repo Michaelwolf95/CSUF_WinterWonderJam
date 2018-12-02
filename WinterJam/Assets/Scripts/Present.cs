@@ -20,8 +20,8 @@ public class Present : MonoBehaviour {
         {
             if(other.attachedRigidbody.tag == "Player")
             {
-                PresentCollectionManager.Instance.AddPresent(1);
                 Destroy(this.gameObject);
+                PresentCollectionManager.Instance.AddPresent(1);
             }
         }
     }

@@ -15,13 +15,14 @@ public class MeterColorChanger : MeterBase
     protected override void UpdateMeter(float percentValue)
     {
         //((IMeterable)MeterableObject).CurrentValue
-        Debug.Log(percentValue);
+        //Debug.Log(percentValue);
         if (percentValue >= (float).7)
         {
             image.color = endColor;
             if (!enoughPresent)
             {
-                MessageDisplayer.instance.DisplayMessage("Enough presents obtained", 3);
+                if(MessageDisplayer.instance != null)
+                    MessageDisplayer.instance.DisplayMessage("Enough presents obtained", 3);
                 enoughPresent = true;
             }
         }
@@ -30,8 +31,6 @@ public class MeterColorChanger : MeterBase
             enoughPresent = false;
             image.color = startColor;
         }
-
-
         
     }
 
