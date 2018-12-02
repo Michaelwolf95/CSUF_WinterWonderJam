@@ -9,19 +9,12 @@ public class LoadGame : MonoBehaviour {
 	public void loadGame()
     {
         SceneManager.LoadScene("SampleScene");
-        SceneManager.UnloadScene("MenuScreen");
-        Time.timeScale = 1;
-    }
-
-    public void Restart()
-    {
-        SceneManager.LoadScene("SampleScene");
+        //PresentCollectionManager.Instance.OnUpdateValue(0);
         Time.timeScale = 1;
     }
 
     public void MainMenu()
     {
         SceneManager.LoadScene("MenuScreen");
-        SceneManager.UnloadScene("SampleScene");
     }
 }
