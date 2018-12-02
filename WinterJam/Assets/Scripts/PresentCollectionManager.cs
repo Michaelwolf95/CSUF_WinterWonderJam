@@ -45,18 +45,6 @@ public class PresentCollectionManager : MonoBehaviour, IMeterable
         
 	}
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            AddPresent(2);
-        }
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            AddPresent(-2);
-        }
-    }
     public void AddPresent(int addAmount)
     {
         currentCount = Mathf.Clamp(currentCount + addAmount, 0, maxCount);
