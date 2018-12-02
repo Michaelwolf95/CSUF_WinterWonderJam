@@ -7,7 +7,7 @@ using System;
 
 public class PresentCollectionManager : Singleton<PresentCollectionManager>, IMeterable
 {
-
+    public Canvas canvas;
     [SerializeField] private int currentCount;
     public int maxCount;
 
@@ -42,9 +42,10 @@ public class PresentCollectionManager : Singleton<PresentCollectionManager>, IMe
         OnUpdateValue(0);
         
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
         if (Input.GetKeyDown(KeyCode.Z))
         {
             AddPresent(1);
@@ -60,3 +61,4 @@ public class PresentCollectionManager : Singleton<PresentCollectionManager>, IMe
         OnUpdateValue(currentCount);
     }
 }
+
