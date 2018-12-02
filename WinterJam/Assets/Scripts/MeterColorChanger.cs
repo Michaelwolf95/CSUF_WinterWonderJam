@@ -16,7 +16,7 @@ public class MeterColorChanger : MeterBase
     {
         //((IMeterable)MeterableObject).CurrentValue
         //Debug.Log(percentValue);
-        if (percentValue >= (float).7)
+        if (percentValue >= (float).5)
         {
             image.color = endColor;
             if (!enoughPresent)

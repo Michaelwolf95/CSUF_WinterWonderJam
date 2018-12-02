@@ -9,7 +9,6 @@ public class PresentCollectionManager : MonoBehaviour, IMeterable
 {
     public static PresentCollectionManager Instance;
 
-    public Canvas canvas;
     [SerializeField] private int currentCount;
     public int maxCount;
 
@@ -51,11 +50,11 @@ public class PresentCollectionManager : MonoBehaviour, IMeterable
     {
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            AddPresent(1);
+            AddPresent(2);
         }
         if (Input.GetKeyDown(KeyCode.X))
         {
-            AddPresent(-1);
+            AddPresent(-2);
         }
     }
     public void AddPresent(int addAmount)
