@@ -24,4 +24,10 @@ public class ChaseState : FsmStateAction
     {
         agent.SetDestination(target.Value.transform.position);
     }
+
+    public override void OnExit()
+    {
+        if(agent.enabled)
+            agent.SetDestination(agent.transform.position);
+    }
 }

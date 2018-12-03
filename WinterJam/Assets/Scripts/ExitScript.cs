@@ -11,6 +11,10 @@ public class ExitScript : MonoBehaviour {
     public GameObject star3;
 
     public TextMeshProUGUI presentText;
+
+    public AudioSource musicSource;
+    public AudioClip victoryMusic;
+
     // Use this for initialization
     private void OnTriggerEnter(Collider other)
     {
@@ -26,6 +30,13 @@ public class ExitScript : MonoBehaviour {
                 star1.SetActive(true);
                 if(PresentCollectionManager.Instance.PercentValue >= (float).75) star2.SetActive(true);
                 if (PresentCollectionManager.Instance.PercentValue >= (float)1) star3.SetActive(true);
+
+                if(musicSource && victoryMusic)
+                {
+                    musicSource.Stop();
+                    musicSource.clip = victoryMusic;
+                    musicSource.Play();
+                }
 
             }
         }

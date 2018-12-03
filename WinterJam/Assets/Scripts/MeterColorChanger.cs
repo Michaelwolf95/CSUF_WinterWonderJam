@@ -12,6 +12,9 @@ public class MeterColorChanger : MeterBase
     public Color endColor;
     private bool enoughPresent = false;
 
+    public string exitMessage = "Enough presents obtained";
+    public float displayTime = 7.5f;
+
     protected override void UpdateMeter(float percentValue)
     {
         //((IMeterable)MeterableObject).CurrentValue
@@ -22,7 +25,7 @@ public class MeterColorChanger : MeterBase
             if (!enoughPresent)
             {
                 if(MessageDisplayer.instance != null)
-                    MessageDisplayer.instance.DisplayMessage("Enough presents obtained", 3);
+                    MessageDisplayer.instance.DisplayMessage(exitMessage, displayTime);
                 enoughPresent = true;
             }
         }
